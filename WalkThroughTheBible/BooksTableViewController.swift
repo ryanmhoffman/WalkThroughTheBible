@@ -93,7 +93,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func restoreTapped(_ sender: AnyObject) {
-        Products.store.restorePurchases()
+        //Products.store.restorePurchases()
     }
     
     func handlePurchaseNotification(_ notification: Notification) {
@@ -137,55 +137,56 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let bookName = books[indexPath.section][indexPath.row]
-        let productNames = ["Exodus","Numbers","Acts"]
-        let productID = "AJZ.WalkThroughTheBible.\(books[indexPath.section][indexPath.row])"
+        // let productNames = ["Exodus","Numbers","Acts"]
+        //let productNames = [""]
+        //let productID = "AJZ.WalkThroughTheBible.\(books[indexPath.section][indexPath.row])"
         
-        if productNames.contains(bookName) {
-
-            if !defaults.bool(forKey: productID) {
-                
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell") as! ProductCell
-                    cell.delegate = self
-                    
-                    if appDelegate.products.count > 0 {
-                        
-                        cell.aiv.stopAnimating()
-                        cell.setUp(aivHidden: true, bookHidden: false, priceHidden: false, priceEnabled: true)
-                        
-                        var product = SKProduct()
-                        
-                        for prod in appDelegate.products {
-                            if prod.localizedTitle == bookName {
-                                product = prod
-                            }
-                        }
-                    
-                        cell.product = product
-                        cell.buyButtonHandler = { product in
-                        Products.store.buyProduct(product)
-                        }
-                    
-                        cell.setUp()
-                        
-                    } else {
-                        if hasConnectivity() {
-                            cell.setUp(aivHidden: false, bookHidden: true, priceHidden: true, priceEnabled: false)
-                            cell.aiv.startAnimating()
-                        } else {
-                            cell.setUp(aivHidden: true, bookHidden: false, priceHidden: false, priceEnabled: true)
-                            cell.book.text = bookName
-                            cell.price.isHidden = false
-                            cell.price.isEnabled = true
-                            cell.book.textColor = UIColor.lightGray
-                            let priceString = "  $0.99  "
-                            cell.price.setTitle(priceString, for: .normal)
-                            cell.setUp()
-                        }
-                    }
-                    
-                    return cell
-            }
-        }
+        //if productNames.contains(bookName) {
+        //
+        //    if !defaults.bool(forKey: productID) {
+        //
+        //            let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell") as! ProductCell
+        //            cell.delegate = self
+        //
+        //            if appDelegate.products.count > 0 {
+        //
+        //                cell.aiv.stopAnimating()
+        //                cell.setUp(aivHidden: true, bookHidden: false, priceHidden: false, priceEnabled: true)
+        //
+        //                var product = SKProduct()
+        //
+        //                for prod in appDelegate.products {
+        //                    if prod.localizedTitle == bookName {
+        //                        product = prod
+        //                    }
+        //                }
+        //
+        //                cell.product = product
+        //                cell.buyButtonHandler = { product in
+        //                Products.store.buyProduct(product)
+        //                }
+        //
+        //                cell.setUp()
+        //
+        //            } else {
+        //                if hasConnectivity() {
+        //                    cell.setUp(aivHidden: false, bookHidden: true, priceHidden: true, priceEnabled: false)
+        //                    cell.aiv.startAnimating()
+        //                } else {
+        //                    cell.setUp(aivHidden: true, bookHidden: false, priceHidden: false, priceEnabled: true)
+        //                    cell.book.text = bookName
+        //                    cell.price.isHidden = false
+        //                    cell.price.isEnabled = true
+        //                    cell.book.textColor = UIColor.lightGray
+        //                    let priceString = "  $0.99  "
+        //                    cell.price.setTitle(priceString, for: .normal)
+        //                    cell.setUp()
+        //                }
+        //            }
+        //
+        //            return cell
+        //    }
+        //}
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell") as! CustomBookCell
             
@@ -210,9 +211,9 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let productID = "AJZ.WalkThroughTheBible.\(books[indexPath.section][indexPath.row])"
+        //let productID = "AJZ.WalkThroughTheBible.\(books[indexPath.section][indexPath.row])"
         
-        if !["Exodus","Numbers","Acts"].contains(books[indexPath.section][indexPath.row]) || defaults.bool(forKey: productID) {
+        if ![""].contains(books[indexPath.section][indexPath.row]) {
             
             let containerViewController = ContainerViewController()
             containerViewController.book = books[indexPath.section][indexPath.row]

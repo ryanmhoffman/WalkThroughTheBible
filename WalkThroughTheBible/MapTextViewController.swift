@@ -252,7 +252,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         
         do {
             let results = try context!.fetch(fetchRequest)
-            bibleLocations = results as! [BibleLocation]
+            bibleLocations = (results as! [BibleLocation])
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
@@ -270,7 +270,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
             for i in 1...Books.booksDictionary[book]! {
                 let bookDict = locations?[book]!
                 let chapterArray = bookDict?[String(i)]!
-                for title in titles as! [String] {
+                for title in titles {
                     if (chapterArray?.contains(title))! {
                         if !chapterAppearances[books.index(of: book)!].contains("\(book) \(i)") {
                             chapterAppearances[books.index(of: book)!].append("\(book) \(i)")

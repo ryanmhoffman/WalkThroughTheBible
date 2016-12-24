@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Papyrus", size: 9)!], for: .normal)
         
         do {
-            reachability = try Reachability()
+            reachability = Reachability()
         } //catch {
             //print("Unable to create Reachability")
         //}
